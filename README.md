@@ -136,7 +136,7 @@ I'm always glad to connect with fellow students, developers, and people who enjo
 
 - **Facebook:** [facebook.com/shakilahmad42052](https://www.facebook.com/shakilahmad42052)
 - **Email:** [shakilahmad42052@gmail.com](mailto:shakilahmad42052@gmail.com)
-- **GitHub:** [github.com/YOUR_GITHUB_USERNAME](https://github.com/YOUR_GITHUB_USERNAME) — replace the placeholder with your actual username.
+- **GitHub:** [[github.com/YOUR_GITHUB_USERNAME](https://github.com/shakil42051)]([https://github.com/YOUR_GITHUB_USERNAME](https://github.com/shakil42051)) — replace the placeholder with your actual username.
 
 <div align="center">
 
