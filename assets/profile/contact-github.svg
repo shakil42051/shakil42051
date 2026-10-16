@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="228" height="46" viewBox="0 0 228 46" role="img" aria-labelledby="t">
+<title id="t">EXPLORE: Repositories</title><rect x="0.5" y="0.5" width="227" height="45" rx="9" fill="#101d2f" stroke="#334963"/>
+<rect x="1" y="1" width="46" height="44" rx="8" fill="#193146"/>
+<text x="24" y="30" text-anchor="middle" font-family="Consolas,monospace" font-size="20" font-weight="700" fill="#a5b4fc">&lt;/&gt;</text>
+<text x="60" y="17" font-family="Segoe UI,Arial,sans-serif" font-size="8" letter-spacing="1.5" fill="#a5b4fc">EXPLORE</text>
+<text x="60" y="34" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#eef3ff">Repositories</text></svg>
