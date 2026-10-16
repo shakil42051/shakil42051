@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="160" viewBox="0 0 1200 160" role="img" aria-labelledby="t">
+<title id="t">Better skills. Bigger dreams. Learn. Build. Debug. Repeat.</title>
+<defs><linearGradient id="line"><stop stop-color="#5eead4"/><stop offset="1" stop-color="#a5b4fc"/></linearGradient></defs>
+<rect x="0.5" y="0.5" width="1199" height="159" rx="20" fill="#0b1220" stroke="#25354a"/>
+<path d="M36 28 H1164" stroke="url(#line)"/>
+<text x="600" y="80" text-anchor="middle" fill="#eef3ff" font-family="Segoe UI,Arial,sans-serif" font-weight="700" font-size="29">Better skills. Bigger dreams.</text>
+<text x="600" y="120" text-anchor="middle" fill="#5eead4" font-family="Consolas,monospace" font-size="15" letter-spacing="2">LEARN / BUILD / DEBUG / REPEAT</text>
+</svg>
