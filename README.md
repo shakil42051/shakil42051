@@ -167,7 +167,7 @@ Fix the loop's boundary and try again.
 <a id="activity"></a>
 ## 05 &nbsp; A little progress, every day
 
-<img src="assets/profile/activity.svg" width="100%" alt="GitHub contribution calendar, active days, public repositories, and followers for shakil42051." />
+<img src="assets/profile/activity.svg?v=2" width="100%" alt="GitHub contribution calendar, active days, public repositories, and followers for shakil42051." />
 
 <p align="center">
   <a href="https://github.com/shakil42051?tab=overview">Contribution overview</a> &nbsp; · &nbsp;
