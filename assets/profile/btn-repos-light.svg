@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="34" viewBox="0 0 168 34" role="img" aria-label="All Repositories">
+  <rect x="0.5" y="0.5" width="167" height="33" rx="8" fill="#f7f6f2" stroke="#d8d5ca"/>
+  <path d="M17 21 L25 13 M19.5 13 H25 V18.5" fill="none" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="37" y="21.2" fill="#161922" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="500">All Repositories</text>
+</svg>

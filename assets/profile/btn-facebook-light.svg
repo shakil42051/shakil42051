@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="112" height="34" viewBox="0 0 112 34" role="img" aria-label="Facebook">
+  <rect x="0.5" y="0.5" width="111" height="33" rx="8" fill="#f7f6f2" stroke="#d8d5ca"/>
+  <circle cx="22" cy="17" r="6.5" fill="none" stroke="#3b82f6" stroke-width="1.5"/><path d="M23.2 21 V16.8 H24.8 M21.2 16.8 H23.2 V15.3 C23.2 14.4 23.7 14 24.7 14" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="37" y="21.2" fill="#161922" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="500">Facebook</text>
+</svg>

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render light and dark GitHub activity SVGs using only Python's standard library."""
+"""Render compact light and dark GitHub momentum waveform SVGs using only Python's stdlib."""
 
 import argparse
 import datetime as dt
@@ -30,46 +30,44 @@ query ProfileActivity($login: String!) {
 }
 """
 
-THEMES = {
-    "dark": {
-        "bg": "#0d1117",
-        "border": "#30363d",
-        "rule": "#21262d",
-        "text": "#e6edf3",
-        "sub": "#8b949e",
-        "muted": "#6e7681",
-        "cell_stroke": "#1b2028",
-        "levels": {
-            "NONE": "#161b22",
-            "FIRST_QUARTILE": "#0e4429",
-            "SECOND_QUARTILE": "#006d32",
-            "THIRD_QUARTILE": "#26a641",
-            "FOURTH_QUARTILE": "#39d353",
-        },
-        "overlay_bg": "#161b22",
-        "overlay_border": "#30363d",
-    },
-    "light": {
-        "bg": "#ffffff",
-        "border": "#d0d7de",
-        "rule": "#e5e9ee",
-        "text": "#1f2328",
-        "sub": "#59636e",
-        "muted": "#6e7781",
-        "cell_stroke": "#d8dee4",
-        "levels": {
-            "NONE": "#ebedf0",
-            "FIRST_QUARTILE": "#9be9a8",
-            "SECOND_QUARTILE": "#40c463",
-            "THIRD_QUARTILE": "#30a14e",
-            "FOURTH_QUARTILE": "#216e39",
-        },
-        "overlay_bg": "#f6f8fa",
-        "overlay_border": "#d0d7de",
-    },
+VALID_LEVELS = {
+    "NONE",
+    "FIRST_QUARTILE",
+    "SECOND_QUARTILE",
+    "THIRD_QUARTILE",
+    "FOURTH_QUARTILE",
 }
 
-VALID_LEVELS = set(THEMES["dark"]["levels"].keys())
+THEMES = {
+    "dark": {
+        "bg": "#0d1017",
+        "border": "#232a38",
+        "divider": "#1d2433",
+        "panel": "#121722",
+        "panel_border": "#21293a",
+        "text": "#f1f4f8",
+        "sub": "#8b95a7",
+        "muted": "#646e82",
+        "bar_zero": "#1c2433",
+        "bar_low": "#0f766e",
+        "bar_mid": "#10b981",
+        "bar_high": "#34d399",
+    },
+    "light": {
+        "bg": "#f7f6f2",
+        "border": "#dcd9cf",
+        "divider": "#e4e1d8",
+        "panel": "#ffffff",
+        "panel_border": "#dedbd0",
+        "text": "#14171f",
+        "sub": "#555d6e",
+        "muted": "#757d8d",
+        "bar_zero": "#e2dfd6",
+        "bar_low": "#34d399",
+        "bar_mid": "#10b981",
+        "bar_high": "#059669",
+    },
+}
 
 
 def fetch_profile(username, token):
@@ -119,158 +117,121 @@ def validate_profile(payload, username):
     return profile
 
 
-def longest_streak(weeks):
-    all_days = sorted(
-        (day for week in weeks for day in week["contributionDays"]),
-        key=lambda day: day["date"],
-    )
-    best = current = 0
-    for day in all_days:
-        if day["contributionCount"] > 0:
-            current += 1
-            if current > best:
-                best = current
-        else:
-            current = 0
-    return best
-
-
 def render_card(profile, username, sync_date, theme_name):
-    palette = THEMES[theme_name]
-    levels = palette["levels"]
+    c = THEMES[theme_name]
     placeholder = profile is None
     escaped_name = html.escape(username)
-    sans = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-    mono = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    sans = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif"
+    mono = "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
 
     if placeholder:
-        metrics = [
-            ("—", "Contributions (1y)"),
-            ("—", "Active days"),
-            ("—", "Public repositories"),
-            ("—", "Longest streak"),
-        ]
-        last_sunday = dt.date(2026, 1, 4)
-        weeks = [
-            {
-                "contributionDays": [
-                    {
-                        "date": (last_sunday + dt.timedelta(days=7 * week + day)).isoformat(),
-                        "weekday": day,
-                        "contributionCount": 0,
-                        "contributionLevel": "NONE",
-                    }
-                    for day in range(7)
-                ]
-            }
-            for week in range(53)
-        ]
+        total_str, active_str, repos_str = "—", "—", "—"
+        weekly_totals = [0] * 53
+        start_label, end_label = "52w ago", "Today"
     else:
         calendar = profile["contributionsCollection"]["contributionCalendar"]
         weeks = calendar["weeks"]
-        active = sum(
-            day["contributionCount"] > 0
+        all_days = [day for week in weeks for day in week["contributionDays"]]
+        active_days = sum(day["contributionCount"] > 0 for day in all_days)
+        total_str = f'{calendar["totalContributions"]:,}'
+        active_str = f"{active_days:,}"
+        repos_str = f'{profile["repositories"]["totalCount"]:,}'
+        weekly_totals = [
+            sum(day["contributionCount"] for day in week["contributionDays"])
             for week in weeks
-            for day in week["contributionDays"]
-        )
-        streak = longest_streak(weeks)
-        streak_label = f"{streak} {'day' if streak == 1 else 'days'}"
-        metrics = [
-            (f'{calendar["totalContributions"]:,}', "Contributions (past year)"),
-            (f"{active:,}", "Active days"),
-            (f'{profile["repositories"]["totalCount"]:,}', "Public repositories"),
-            (streak_label, "Longest streak"),
         ]
+        first_date = dt.date.fromisoformat(all_days[0]["date"])
+        last_date = dt.date.fromisoformat(all_days[-1]["date"])
+        start_label = first_date.strftime("%b '%y")
+        end_label = last_date.strftime("%b '%y")
 
+    max_week = max(weekly_totals) if any(weekly_totals) else 1
     desc = (
-        "Awaiting first sync. Run the included GitHub Actions workflow to load real data."
+        "Awaiting first sync."
         if placeholder
-        else f"GitHub contribution calendar and public stats for @{escaped_name}. Synced {sync_date} UTC."
+        else f"Weekly contribution momentum and live stats for @{escaped_name}. Synced {sync_date} UTC."
     )
 
     elements = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="270" viewBox="0 0 900 270" role="img" aria-labelledby="title desc">',
-        f'<title id="title">GitHub activity for @{escaped_name}</title>',
-        f'<desc id="desc">{desc}</desc>',
-        f'<rect x="0.5" y="0.5" width="899" height="269" rx="12" fill="{palette["bg"]}" stroke="{palette["border"]}"/>',
-        f'<g font-family="{sans}">',
-        f'  <text x="32" y="34" fill="{palette["text"]}" font-size="13" font-weight="600">Contribution activity</text>',
-        f'  <text x="868" y="34" text-anchor="end" fill="{palette["muted"]}" font-family="{mono}" font-size="11">@{escaped_name}</text>',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="108" viewBox="0 0 900 108" role="img" aria-labelledby="act-title act-desc">',
+        f'  <title id="act-title">Live GitHub Momentum — @{escaped_name}</title>',
+        f'  <desc id="act-desc">{desc}</desc>',
+        '  <defs>',
+        '    <style>',
+        '      @media (prefers-reduced-motion: reduce) { .anim { display: none; } }',
+        '    </style>',
+        '  </defs>',
+        f'  <rect x="0.5" y="0.5" width="899" height="107" rx="12" fill="{c["bg"]}" stroke="{c["border"]}"/>',
+        f'  <g font-family="{sans}">',
+        '    <circle cx="30" cy="26" r="3.2" fill="#10b981">',
+        '      <animate class="anim" attributeName="opacity" values="1;0.3;1" dur="2.4s" repeatCount="indefinite"/>',
+        '    </circle>',
+        f'    <text x="41" y="29.5" fill="{c["muted"]}" font-family="{mono}" font-size="10" font-weight="600" letter-spacing="1.1">WEEKLY MOMENTUM  ·  AUTO-SYNCED</text>',
+        f'    <text x="26" y="61" fill="{c["text"]}" font-size="20" font-weight="700" letter-spacing="-0.4">'
+        f'{total_str} <tspan fill="{c["sub"]}" font-size="12" font-weight="400" letter-spacing="0">contributions</tspan>'
+        f'<tspan fill="{c["muted"]}" font-size="13" font-weight="400">  ·  </tspan>'
+        f'{active_str} <tspan fill="{c["sub"]}" font-size="12" font-weight="400" letter-spacing="0">active days</tspan>'
+        f'<tspan fill="{c["muted"]}" font-size="13" font-weight="400">  ·  </tspan>'
+        f'{repos_str} <tspan fill="{c["sub"]}" font-size="12" font-weight="400" letter-spacing="0">repos</tspan>'
+        '</text>',
+        f'    <text x="26" y="85" fill="{c["sub"]}" font-size="11.5">Open to internships, entry-level roles &amp; collaborations</text>',
+        '  </g>',
+        f'  <rect x="496" y="14" width="388" height="80" rx="9" fill="{c["panel"]}" stroke="{c["panel_border"]}"/>',
     ]
 
-    for x, (value, label) in zip([32, 248, 464, 680], metrics):
-        elements.append(
-            f'  <text x="{x}" y="70" fill="{palette["text"]}" font-size="23" font-weight="700" letter-spacing="-0.4">{html.escape(value)}</text>'
-        )
-        elements.append(
-            f'  <text x="{x}" y="88" fill="{palette["sub"]}" font-size="11">{html.escape(label)}</text>'
-        )
+    # Render 53 weekly waveform bars inside (510..870), baseline at y=73
+    num_weeks = len(weekly_totals)
+    start_x = 510.0
+    pitch = 356.0 / max(num_weeks - 1, 1)
+    baseline_y = 73.0
+    max_bar_h = 44.0
 
-    elements.append(f'  <line x1="32" y1="104" x2="868" y2="104" stroke="{palette["rule"]}" stroke-width="1"/>')
+    last_active_x = None
+    last_active_top = None
 
-    grid_x = 76
-    grid_y = 134
-    pitch = 15
-    cell = 11
-
-    for row, name in [(1, "Mon"), (3, "Wed"), (5, "Fri")]:
-        elements.append(
-            f'  <text x="32" y="{grid_y + row * pitch + 9}" fill="{palette["muted"]}" font-size="10">{name}</text>'
-        )
-
-    last_month = None
-    last_label_col = -4
-    for col, week in enumerate(weeks):
-        days = week["contributionDays"]
-        if not days:
-            continue
-        date = dt.date.fromisoformat(days[0]["date"])
-        if not placeholder and date.month != last_month and col - last_label_col >= 3:
+    for idx, total in enumerate(weekly_totals):
+        bx = round(start_x + idx * pitch, 2)
+        if total == 0:
+            bh = 4.0
+            fill = c["bar_zero"]
+            by = round(baseline_y - bh, 2)
             elements.append(
-                f'  <text x="{grid_x + col * pitch}" y="124" fill="{palette["sub"]}" font-size="10">{date.strftime("%b")}</text>'
+                f'  <rect x="{bx}" y="{by}" width="4.4" height="{bh}" rx="2" fill="{fill}">'
+                f'<title>Week {idx + 1}: 0 contributions</title></rect>'
             )
-            last_label_col = col
-        last_month = date.month
-
-        for day in days:
-            x = grid_x + col * pitch
-            y = grid_y + day["weekday"] * pitch
-            count = day["contributionCount"]
-            unit = "contribution" if count == 1 else "contributions"
-            title = (
-                "Setup preview — no activity data"
-                if placeholder
-                else f'{day["date"]}: {count} {unit}'
-            )
-            level = day["contributionLevel"]
-            color = levels[level]
-            stroke_attr = f' stroke="{palette["cell_stroke"]}" stroke-width="0.6"' if level == "NONE" else ""
+        else:
+            ratio = total / max_week
+            bh = round(max(9.0, ratio * max_bar_h), 2)
+            by = round(baseline_y - bh, 2)
+            if ratio >= 0.66:
+                fill = c["bar_high"]
+            elif ratio >= 0.33:
+                fill = c["bar_mid"]
+            else:
+                fill = c["bar_low"]
+            delay = round((idx % 9) * 0.22, 2)
+            unit = "contribution" if total == 1 else "contributions"
             elements.append(
-                f'  <rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="2.5" fill="{color}"{stroke_attr}><title>{title}</title></rect>'
+                f'  <rect x="{bx}" y="{by}" width="4.4" height="{bh}" rx="2" fill="{fill}">'
+                f'<animate class="anim" attributeName="opacity" values="0.72;1;0.72" dur="2.8s" begin="{delay}s" repeatCount="indefinite"/>'
+                f'<title>Week {idx + 1}: {total} {unit}</title></rect>'
             )
+            last_active_x = round(bx + 2.2, 2)
+            last_active_top = round(by - 5.5, 2)
 
-    if placeholder:
-        elements.extend([
-            f'  <rect x="245" y="156" width="410" height="58" rx="10" fill="{palette["overlay_bg"]}" stroke="{palette["overlay_border"]}"/>',
-            f'  <text x="450" y="180" text-anchor="middle" fill="{palette["text"]}" font-size="12.5" font-weight="600">Awaiting first sync</text>',
-            f'  <text x="450" y="199" text-anchor="middle" fill="{palette["sub"]}" font-size="11">Run the profile-activity workflow to load live GitHub data.</text>',
-        ])
+    if last_active_x is not None and not placeholder:
+        elements.append(
+            f'  <circle cx="{last_active_x}" cy="{last_active_top}" r="2.2" fill="#10b981">'
+            '<animate class="anim" attributeName="r" values="1.8;3.6;1.8" dur="2s" repeatCount="indefinite"/>'
+            '</circle>'
+        )
 
-    footer = (
-        "Setup preview · No statistics generated yet"
-        if placeholder
-        else f"Updated {sync_date} UTC · GitHub GraphQL API"
+    elements.append(
+        f'  <text x="510" y="87" fill="{c["muted"]}" font-family="{mono}" font-size="9">{html.escape(start_label)}</text>'
     )
-    elements.append(f'  <text x="32" y="253" fill="{palette["muted"]}" font-size="10.5">{footer}</text>')
-    elements.append(f'  <text x="752" y="253" text-anchor="end" fill="{palette["muted"]}" font-size="10.5">Less</text>')
-    for idx, level in enumerate(["NONE", "FIRST_QUARTILE", "SECOND_QUARTILE", "THIRD_QUARTILE", "FOURTH_QUARTILE"]):
-        lx = 760 + idx * 15
-        stroke_attr = f' stroke="{palette["cell_stroke"]}" stroke-width="0.6"' if level == "NONE" else ""
-        elements.append(
-            f'  <rect x="{lx}" y="243" width="11" height="11" rx="2.5" fill="{levels[level]}"{stroke_attr}/>'
-        )
-    elements.append(f'  <text x="868" y="253" text-anchor="end" fill="{palette["muted"]}" font-size="10.5">More</text>')
-    elements.append("</g>")
+    elements.append(
+        f'  <text x="870" y="87" text-anchor="end" fill="{c["muted"]}" font-family="{mono}" font-size="9">{html.escape(end_label)}</text>'
+    )
     elements.append("</svg>")
     return "\n".join(elements) + "\n"
 

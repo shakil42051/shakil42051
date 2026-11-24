@@ -1,58 +1,33 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/profile/header-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="assets/profile/header-light.svg" />
-  <img src="assets/profile/header-dark.svg" width="100%" alt="Md. Shakil Ahmad Nahid — CSE undergraduate at Southeast University, Dhaka, Bangladesh" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/profile/hero-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="assets/profile/hero-light.svg" />
+  <img src="assets/profile/hero-light.svg" width="100%" alt="Md. Shakil Ahmad Nahid — B.Sc. in CSE at Southeast University, Dhaka" />
 </picture>
 
 <br />
 
-I'm **Md. Shakil Ahmad Nahid**, a Computer Science & Engineering student at **Southeast University** in Dhaka. Most of my time goes into building native Android apps in Kotlin, web tools in JavaScript and Node.js, and occasional graphics projects in C++ and OpenGL.
+Studying **Computer Science & Engineering** at **Southeast University** in Dhaka, focused on building native Android apps in Kotlin, full-stack web applications in JavaScript, and real-time 3D graphics in C++ and OpenGL. Earlier work in sales and online business taught me to pay attention to how people actually use a tool, not just how it's written.
 
-Before focusing on software, I worked in sales, customer service, and online business. That background mostly taught me to listen first and care about whether a tool actually works well for the people using it.
+<br />
 
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/profile/stack-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="assets/profile/stack-light.svg" />
+  <img src="assets/profile/stack-light.svg" width="100%" alt="Tech stack across Android, Web, 3D Graphics, and Developer Tooling" />
+</picture>
 
-### Projects
-
-| Project | What it does | Stack | Links |
-| :--- | :--- | :--- | :--- |
-| **[campus-nfc-wallet](https://github.com/shakil42051/campus-nfc-wallet)** | University NFC card analyzer, encrypted digital pass vault (Android Keystore AES-256-GCM), and campus attendance terminal for Android. | `Kotlin` `Jetpack Compose` `Material 3` | [Repo](https://github.com/shakil42051/campus-nfc-wallet) |
-| **[A-last-cup-of-tea-3D-simulation](https://github.com/shakil42051/A-last-cup-of-tea-3D-simulation)** | Real-time 3D interactive cinematic scene built for my Computer Graphics & Animation Lab. | `C++17` `OpenGL` `FreeGLUT` `CMake` | [Repo](https://github.com/shakil42051/A-last-cup-of-tea-3D-simulation) |
-| **[overthink](https://github.com/shakil42051/overthink)** | Native Android research workspace for reading original PDFs and organizing sources, notes, and projects in one place. | `Kotlin` `Android` `JavaScript` `Docker` | [Repo](https://github.com/shakil42051/overthink) · [APK](https://github.com/shakil42051/overthink/releases/tag/v2.1-preview) |
-| **[Bangla-Scan](https://github.com/shakil42051/Bangla-Scan)** | Bangla manga, manhwa, manhua, and comic platform with a chapter reader, publishing studio, and user accounts. | `JavaScript` `Node.js` `Express` `MongoDB` | [Repo](https://github.com/shakil42051/Bangla-Scan) |
-| **[uttejito65](https://github.com/shakil42051/uttejito65)** | Class schedule builder and exporter for Southeast University students, supporting both regular and Ramadan timings. | `HTML` `CSS` `JavaScript` | [Repo](https://github.com/shakil42051/uttejito65) · [Live](https://uttejito65.netlify.app/) |
-
----
-
-### Stack
-
-| Area | Technologies |
-| :--- | :--- |
-| **Languages** | `Kotlin` · `C++` · `C` · `Java` · `JavaScript` · `SQL` · `Python` |
-| **Mobile** | `Android` · `Jetpack Compose` · `Material 3` |
-| **Web & Backend** | `HTML/CSS` · `Node.js` · `Express` · `MongoDB` |
-| **Graphics & Tooling** | `OpenGL (FreeGLUT / GLU)` · `CMake` · `Git` · `GitHub Actions` · `Docker` |
-
----
-
-### Activity
+<br />
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/profile/activity-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="assets/profile/activity-light.svg" />
-  <img src="assets/profile/activity-dark.svg" width="100%" alt="GitHub contribution calendar and activity stats for @shakil42051" />
+  <img src="assets/profile/activity-light.svg" width="100%" alt="Weekly GitHub momentum and contribution summary for @shakil42051" />
 </picture>
 
----
+<br />
 
-### Contact
-
-Open to internships, entry-level software roles, and interesting collaborations.
-
-| | |
-| :--- | :--- |
-| **Email** | [shakilahmad42052@gmail.com](mailto:shakilahmad42052@gmail.com) |
-| **GitHub** | [github.com/shakil42051](https://github.com/shakil42051) |
-| **Facebook** | [facebook.com/shakilahmad42052](https://www.facebook.com/shakilahmad42052) |
-| **Languages** | Bangla · English · Hindi |
-| **Based in** | Dhaka, Bangladesh (`UTC+6`) |
+<p align="center">
+  <a href="mailto:shakilahmad42052@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/profile/btn-email-dark.svg" /><img src="assets/profile/btn-email-light.svg" height="34" alt="Email shakilahmad42052@gmail.com" /></picture></a>&nbsp;&nbsp;
+  <a href="https://www.facebook.com/shakilahmad42052"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/profile/btn-facebook-dark.svg" /><img src="assets/profile/btn-facebook-light.svg" height="34" alt="Connect on Facebook" /></picture></a>&nbsp;&nbsp;
+  <a href="https://github.com/shakil42051?tab=repositories"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/profile/btn-repos-dark.svg" /><img src="assets/profile/btn-repos-light.svg" height="34" alt="Explore all repositories" /></picture></a>
+</p>
