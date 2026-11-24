@@ -12,7 +12,7 @@
       <animate class="anim" attributeName="opacity" values="1;0.3;1" dur="2.4s" repeatCount="indefinite"/>
     </circle>
     <text x="41" y="29.5" fill="#646e82" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="600" letter-spacing="1.1">WEEKLY MOMENTUM  ·  AUTO-SYNCED</text>
-    <text x="26" y="61" fill="#f1f4f8" font-size="20" font-weight="700" letter-spacing="-0.4">96 <tspan fill="#8b95a7" font-size="12" font-weight="400" letter-spacing="0">contributions</tspan><tspan fill="#646e82" font-size="13" font-weight="400">  ·  </tspan>25 <tspan fill="#8b95a7" font-size="12" font-weight="400" letter-spacing="0">active days</tspan><tspan fill="#646e82" font-size="13" font-weight="400">  ·  </tspan>6 <tspan fill="#8b95a7" font-size="12" font-weight="400" letter-spacing="0">repos</tspan></text>
+    <text x="26" y="61" fill="#f1f4f8" font-size="20" font-weight="700" letter-spacing="-0.4">98 <tspan fill="#8b95a7" font-size="12" font-weight="400" letter-spacing="0">contributions</tspan><tspan fill="#646e82" font-size="13" font-weight="400">  ·  </tspan>26 <tspan fill="#8b95a7" font-size="12" font-weight="400" letter-spacing="0">active days</tspan><tspan fill="#646e82" font-size="13" font-weight="400">  ·  </tspan>6 <tspan fill="#8b95a7" font-size="12" font-weight="400" letter-spacing="0">repos</tspan></text>
     <text x="26" y="85" fill="#8b95a7" font-size="11.5">Open to internships, entry-level roles &amp; collaborations</text>
   </g>
   <rect x="496" y="14" width="388" height="80" rx="9" fill="#121722" stroke="#21293a"/>
@@ -68,8 +68,8 @@
   <rect x="845.46" y="64.0" width="4.4" height="9.0" rx="2" fill="#0f766e"><animate class="anim" attributeName="opacity" values="0.72;1;0.72" dur="2.8s" begin="0.88s" repeatCount="indefinite"/><title>Week 50: 2 contributions</title></rect>
   <rect x="852.31" y="64.0" width="4.4" height="9.0" rx="2" fill="#0f766e"><animate class="anim" attributeName="opacity" values="0.72;1;0.72" dur="2.8s" begin="1.1s" repeatCount="indefinite"/><title>Week 51: 1 contribution</title></rect>
   <rect x="859.15" y="64.0" width="4.4" height="9.0" rx="2" fill="#0f766e"><animate class="anim" attributeName="opacity" values="0.72;1;0.72" dur="2.8s" begin="1.32s" repeatCount="indefinite"/><title>Week 52: 3 contributions</title></rect>
-  <rect x="866.0" y="64.0" width="4.4" height="9.0" rx="2" fill="#0f766e"><animate class="anim" attributeName="opacity" values="0.72;1;0.72" dur="2.8s" begin="1.54s" repeatCount="indefinite"/><title>Week 53: 4 contributions</title></rect>
-  <circle cx="868.2" cy="58.5" r="2.2" fill="#10b981"><animate class="anim" attributeName="r" values="1.8;3.6;1.8" dur="2s" repeatCount="indefinite"/></circle>
+  <rect x="866.0" y="63.22" width="4.4" height="9.78" rx="2" fill="#0f766e"><animate class="anim" attributeName="opacity" values="0.72;1;0.72" dur="2.8s" begin="1.54s" repeatCount="indefinite"/><title>Week 53: 6 contributions</title></rect>
+  <circle cx="868.2" cy="57.72" r="2.2" fill="#10b981"><animate class="anim" attributeName="r" values="1.8;3.6;1.8" dur="2s" repeatCount="indefinite"/></circle>
   <text x="510" y="87" fill="#646e82" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9">Nov &#x27;25</text>
   <text x="870" y="87" text-anchor="end" fill="#646e82" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9">Nov &#x27;26</text>
 </svg>
