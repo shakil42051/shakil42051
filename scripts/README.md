@@ -1,5 +1,5 @@
 # Profile activity generator
 
-`update_profile.py` builds `assets/profile/activity.svg` from GitHub contribution data using only Python’s standard library. The workflow in `.github/workflows/profile-activity.yml` runs it daily and on demand.
+`update_profile.py` generates `assets/profile/activity-dark.svg` and `assets/profile/activity-light.svg` from GitHub's GraphQL contribution calendar using only Python's standard library.
 
-The generator uses GitHub’s automatic workflow token. It preserves the existing card if an API request fails. No personal access token is required.
+The GitHub Actions workflow in `.github/workflows/profile-activity.yml` runs it daily and on manual dispatch using GitHub's built-in `GITHUB_TOKEN`. If an API request fails, the existing cards are left untouched.
